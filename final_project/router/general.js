@@ -29,22 +29,40 @@ public_users.get('/',function (req, res) {
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn',function (req, res) {
   //Write your code here
-  const IBSN = req.params.IBSN;
-res.send(books[IBSN])
+  const isbn = req.params.isbn;
+res.send(books[isbn])
  });
   
 // Get book details based on author
 public_users.get('/author/:author',function (req, res) {
   //Write your code here
-  const author = req.params.author;
-res.send(books[author])
+  let booksbyauthor = [];
+  let isbns = Object.keys(books);
+  isbns.forEach((isbn) => {
+    if(books[isbn]["author"] === req.params.author) {
+      booksbyauthor.push({"isbn":isbn,
+                          "author":books[isbn]["author"],
+                          "title":books[isbn]["title"],
+                          "reviews":books[isbn]["reviews"]});
+    }
+  });
+  res.send(JSON.stringify({booksbyauthor}, null, 4));
 });
 
 // Get all books based on title
 public_users.get('/title/:title',function (req, res) {
   //Write your code here
-  const title = req.params.title;
-  res.send(books[title])
+  let booksbytitle = [];
+  let isbns = Object.keys(books);
+  isbns.forEach((isbn) => {
+    if(books[isbn]["title"] === req.params.title) {
+      booksbytitle.push({"isbn":isbn,
+                          "author":books[isbn]["author"],
+                          "title":books[isbn]["title"],
+                          "reviews":books[isbn]["reviews"]});
+    }
+  });
+  res.send(JSON.stringify({booksbytitle}, null, 4));
 });
 
 //  Get book review
