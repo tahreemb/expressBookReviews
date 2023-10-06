@@ -74,11 +74,7 @@ regd_users.delete("/auth/review/:isbn", (req, res) => {
     if (filtered_book) {
         let review = req.query.review;
         let reviewer = req.session.authorization['username'];
-        if(review) {
-            delete filtered_book['reviews'][reviewer];
-            books[isbn] = filtered_book;
-        return res.status(200).json(book);
-        }
+        delete filtered_book['reviews'][reviewer];
         res.send(`The review for the book with ISBN  ${isbn} has been deleted.`);
     }
     else{
