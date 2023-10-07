@@ -94,7 +94,7 @@ public_users.get('/books/author/:author',function (req, res) {
     });
 
     get_books_author.then(function(){
-            console.log("Promise is resolved");
+            console.log("Promise for Task 12 resolved");
    }).catch(function () { 
                 console.log('The mentioned author does not exist');
   });
@@ -139,7 +139,7 @@ public_users.get('/books/title/:title',function (req, res) {
     });
 
     get_books_title.then(function(){
-            console.log("Promise is resolved");
+            console.log("Promise for Task 13 resolved");
    }).catch(function () { 
                 console.log('The mentioned title does not exist');
   });
